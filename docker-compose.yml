@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Mapea el puerto 8080 del contenedor al puerto 8080 del host
+    environment:
+      MONGO_URI: mongodb+srv://jhquispelo:S8IJzszBHpUWe33m@cluster0.885yg.mongodb.net/mi_app?retryWrites=true&w=majority&appName=Cluster0
+      PORT: 8080
+      JWT_SECRET: your_jwt_secret
+      JWT_EXPIRES_IN: 7m
+      JWT_COOKIE_NAME: auth_token
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Mapea el puerto 3000 del contenedor al puerto 5173 del host
+    environment:
+      VITE_BACKEND_URL: http://localhost:8080 # URL del backend para el frontend
+    stdin_open: true
+    tty: true
+
+  mongo:
+    image: mongo:8.0
+    container_name: mongodb
+    ports:
+      - "27017:27017" # Mapea el puerto 27017 del contenedor al puerto 27017 del host
+    volumes:
+      - mongodb_data:/data/db  # Persiste los datos de MongoDB en un volumen
+volumes:
+  mongodb_data:  # Define el volumen para persistir los datos

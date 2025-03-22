@@ -1,0 +1,55 @@
+[33mcommit f1f23f56f20fcafba44466a86685dcf193b6c621[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Jhojan-crypto <jhquispelo@est.unap.edu.pe>
+Date:   Thu Mar 20 23:03:58 2025 -0500
+
+    elback
+
+ .env                                               |     5 [32m+[m
+ .gitignore                                         |     1 [32m+[m
+ Dockerfile                                         |    23 [32m+[m
+ nest-cli.json                                      |     4 [32m+[m
+ package-lock.json                                  | 10783 [32m+++++++++++++++++++[m
+ package.json                                       |    89 [32m+[m
+ pnpm-lock.yaml                                     |  5317 [32m+++++++++[m
+ src/app.module.ts                                  |    72 [32m+[m
+ src/auth.middleware.ts                             |   126 [32m+[m
+ .../controllers/authentication.controller.spec.ts  |    18 [32m+[m
+ .../controllers/authentication.controller.ts       |    66 [32m+[m
+ .../controllers/authorization.controller.spec.ts   |    18 [32m+[m
+ src/common/controllers/authorization.controller.ts |    23 [32m+[m
+ src/common/controllers/tasks.controller.spec.ts    |    18 [32m+[m
+ src/common/controllers/tasks.controller.ts         |    18 [32m+[m
+ src/common/controllers/users.controller.spec.ts    |    18 [32m+[m
+ src/common/controllers/users.controller.ts         |   129 [32m+[m
+ src/common/dto/create-user.request.ts              |    10 [32m+[m
+ src/common/dto/task-user.request.ts                |     0
+ src/common/guards/jwt-auth.guard.spec.ts           |     7 [32m+[m
+ src/common/guards/jwt-auth.guard.ts                |    53 [32m+[m
+ src/common/guards/roles.guard.spec.ts              |     8 [32m+[m
+ src/common/guards/roles.guard.ts                   |    26 [32m+[m
+ src/config/config.module.ts                        |    11 [32m+[m
+ src/config/database.config.ts                      |    15 [32m+[m
+ src/config/jwt.config.ts                           |    24 [32m+[m
+ src/decorators/roles.decorator.ts                  |     3 [32m+[m
+ src/dto/create-task.dto.ts                         |     6 [32m+[m
+ src/dto/create-user.dto.ts                         |     7 [32m+[m
+ src/events/user-created.event.ts                   |     3 [32m+[m
+ src/main.ts                                        |    39 [32m+[m
+ src/modules/auth/auth.module.ts                    |    29 [32m+[m
+ src/modules/auth/authentication.service.spec.ts    |    18 [32m+[m
+ src/modules/auth/authentication.service.ts         |    64 [32m+[m
+ src/modules/auth/authorization.service.spec.ts     |    18 [32m+[m
+ src/modules/auth/authorization.service.ts          |    14 [32m+[m
+ src/modules/users/task.schema.ts                   |    31 [32m+[m
+ src/modules/users/tasks.service.spec.ts            |    18 [32m+[m
+ src/modules/users/tasks.service.ts                 |    18 [32m+[m
+ src/modules/users/user.schema.ts                   |    40 [32m+[m
+ src/modules/users/users.module.ts                  |    23 [32m+[m
+ src/modules/users/users.service.spec.ts            |    18 [32m+[m
+ src/modules/users/users.service.ts                 |    63 [32m+[m
+ src/types/express.d.ts                             |    11 [32m+[m
+ test/app.e2e-spec.ts                               |    24 [32m+[m
+ test/jest-e2e.json                                 |     9 [32m+[m
+ tsconfig.build.json                                |     9 [32m+[m
+ tsconfig.json                                      |    12 [32m+[m
+ 48 files changed, 17359 insertions(+)
