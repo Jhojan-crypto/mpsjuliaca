@@ -27,7 +27,7 @@ async function bootstrap() {
   app.use(cookieParser()); // Habilitar cookies
   
   app.enableCors({
-    origin: 'https://giving-passion-production.up.railway.app:3000', 
+    origin: 'https://giving-passion-production.up.railway.app', 
     methods: 'GET,POST,PUT,DELETE',
     credentials: true,
   }); // Permitir CORS para conectar el frontend
