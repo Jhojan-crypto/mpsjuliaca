@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext'; // Import the AuthContext
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://mpsjuliaca-production.up.railway.app:8080';
 
 const getPeruvianHolidays = (year: number) => [
   `${year}-01-01`, // Año Nuevo

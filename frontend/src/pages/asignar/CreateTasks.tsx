@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/ui/Navbar';
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://mpsjuliaca-production.up.railway.app:8080';
 
 export const CreateTasks: React.FC = () => {
   const [title, setTitle] = useState('');

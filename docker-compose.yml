@@ -23,7 +23,7 @@ services:
     ports:
       - "3000:3000" # Mapea el puerto 3000 del contenedor al puerto 5173 del host
     environment:
-      VITE_BACKEND_URL: http://localhost:8080 # URL del backend para el frontend
+      VITE_BACKEND_URL: https://mpsjuliaca-production.up.railway.app:8080 # URL del backend para el frontend
     stdin_open: true
     tty: true
 

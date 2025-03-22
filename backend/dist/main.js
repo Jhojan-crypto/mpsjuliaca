@@ -51,7 +51,7 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.use((0, cookie_parser_1.default)()); // Habilitar cookies
     app.enableCors({
-        origin: 'http://localhost:3000',
+        origin: 'https://giving-passion-production.up.railway.app:3000',
         methods: 'GET,POST,PUT,DELETE',
         credentials: true,
     }); // Permitir CORS para conectar el frontend
