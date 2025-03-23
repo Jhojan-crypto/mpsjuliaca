@@ -27,27 +27,28 @@ export class JwtAuthGuard implements CanActivate {
 
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
+import { JwtConfig } from '../../config/jwt.config';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
+  constructor(private readonly jwtConfig: JwtConfig) {}
+
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-
-    // Obtener el token del encabezado Authorization o de las cookies
-    const token =
-      request.headers.authorization?.split(' ')[1] || request.cookies['auth_token'];
+    const token = request.headers.authorization?.split(' ')[1];
 
     if (!token) {
-      return false; // No hay token
+      console.error('Token no encontrado');
+      return false;
     }
 
     try {
-      const secret = process.env.JWT_SECRET as string; // Asegúrate de que JWT_SECRET esté definido
-      const decoded = jwt.verify(token, secret); // Usar JWT_SECRET desde .env
-      request.user = decoded;
+      const secret = this.jwtConfig.getSecret(); // Obtén la clave secreta desde JwtConfig
+      const decoded = jwt.verify(token, secret); // Verifica el token con la clave secreta
+      request.user = decoded; // Adjunta el usuario decodificado al request
       return true;
     } catch (err) {
-      console.error('Token inválido:', err);
+      console.error('Token inválido:', err.message);
       return false;
     }
   }

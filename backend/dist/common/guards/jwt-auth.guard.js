@@ -54,32 +54,40 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JwtAuthGuard = void 0;
 const common_1 = require("@nestjs/common");
 const jwt = __importStar(require("jsonwebtoken"));
+const jwt_config_1 = require("../../config/jwt.config");
 let JwtAuthGuard = class JwtAuthGuard {
+    constructor(jwtConfig) {
+        this.jwtConfig = jwtConfig;
+    }
     canActivate(context) {
         var _a;
         const request = context.switchToHttp().getRequest();
-        // Obtener el token del encabezado Authorization o de las cookies
-        const token = ((_a = request.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1]) || request.cookies['auth_token'];
+        const token = (_a = request.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
         if (!token) {
-            return false; // No hay token
+            console.error('Token no encontrado');
+            return false;
         }
         try {
-            const secret = process.env.JWT_SECRET; // Asegúrate de que JWT_SECRET esté definido
-            const decoded = jwt.verify(token, secret); // Usar JWT_SECRET desde .env
-            request.user = decoded;
+            const secret = this.jwtConfig.getSecret(); // Obtén la clave secreta desde JwtConfig
+            const decoded = jwt.verify(token, secret); // Verifica el token con la clave secreta
+            request.user = decoded; // Adjunta el usuario decodificado al request
             return true;
         }
         catch (err) {
-            console.error('Token inválido:', err);
+            console.error('Token inválido:', err.message);
             return false;
         }
     }
 };
 JwtAuthGuard = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [jwt_config_1.JwtConfig])
 ], JwtAuthGuard);
 exports.JwtAuthGuard = JwtAuthGuard;
