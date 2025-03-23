@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/ui/Navbar';
 
-const API_URL = 'https://mpsjuliaca-production.up.railway.app:8080';
+const API_URL = 'https://mpsjuliaca-production.up.railway.app';
 
 export const CreateUser: React.FC = () => {
   const [username, setUsername] = useState('');

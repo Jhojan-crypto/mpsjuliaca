@@ -87,7 +87,7 @@ import { User } from '../types/types';
 
 // Configuración inicial de Axios
 export const api = axios.create({
-  baseURL: 'https://mpsjuliaca-production.up.railway.app:8080', // URL base de tu backend NestJS
+  baseURL: 'https://mpsjuliaca-production.up.railway.app', // URL base de tu backend NestJS
   withCredentials: true,            // Para enviar cookies como las HTTP-only (si las usas en JWT)
 });
 
